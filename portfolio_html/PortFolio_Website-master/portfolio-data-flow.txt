@@ -1,0 +1,11 @@
+user:{
+    name
+    username
+    email
+    phoneNo.
+    profileImage
+    logo
+    position: comma sepreted
+    
+
+}
