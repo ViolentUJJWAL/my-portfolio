@@ -38,33 +38,51 @@ const userSchema = new mongoose.Schema({
         default: []
     },
     profilrImage: {
-        type: String,
-        validate: {
-            validator: function (v) {
-                return /^(ftp|http|https):\/\/[^ "]+$/.test(v); // Validates URL format
+        url: {
+            type: String,
+            required: [true, "profilrImage is required."],
+            validate: {
+                validator: function (v) {
+                    return /^(ftp|http|https):\/\/[^ "]+$/.test(v); // Validates URL format
+                },
+                message: props => `${props.value} is not a valid profilrImage link URL!`
             },
-            message: props => `${props.value} is not a valid project link URL!`
         },
-        default: null
+        public_id: {
+            type: String,
+            required: [true, "profilrImage is required."],
+        }
     },
     logo: {
-        type: String,
-        validate: {
-            validator: function (v) {
-                return /^(ftp|http|https):\/\/[^ "]+$/.test(v); // Validates URL format
+        url: {
+            type: String,
+            required: [true, "logo is required."],
+            validate: {
+                validator: function (v) {
+                    return /^(ftp|http|https):\/\/[^ "]+$/.test(v); // Validates URL format
+                },
+                message: props => `${props.value} is not a valid logo link URL!`
             },
-            message: props => `${props.value} is not a valid project link URL!`
         },
-        default: null
+        public_id: {
+            type: String,
+            required: [true, "logo is required."],
+        }
     },
     resume: {
-        type: String,
-        default: null,
-        validate: {
-            validator: function (v) {
-                return /^(ftp|http|https):\/\/[^ "]+$/.test(v); // Validates URL format
+        url: {
+            type: String,
+            required: [true, "resume is required."],
+            validate: {
+                validator: function (v) {
+                    return /^(ftp|http|https):\/\/[^ "]+$/.test(v); // Validates URL format
+                },
+                message: props => `${props.value} is not a valid resume link URL!`
             },
-            message: props => `${props.value} is not a valid project link URL!`
+        },
+        public_id: {
+            type: String,
+            required: [true, "resume is required."],
         }
     },
     address: {

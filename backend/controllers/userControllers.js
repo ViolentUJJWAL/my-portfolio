@@ -10,6 +10,8 @@ const { comparePassword, hashPassword } = require("../utils/password")
 exports.updateUser = async (req, res) => {
     try {
         const { name, phoneno, about, designation, city, state, country, pin } = req.body
+        const { resume, profilrImage, logo } = req.file
+        console.log(req.file)
         const userdata = await user.findById(req.user._id)
         userdata.name = name || userdata.name
         userdata.phoneno = phoneno || userdata.phoneno
@@ -19,6 +21,41 @@ exports.updateUser = async (req, res) => {
         userdata.address.state = state || userdata.address.state || null
         userdata.address.country = country || userdata.address.country || null
         userdata.address.pin = pin || userdata.address.pin || null
+
+        if (resume) {
+            const uploadResponse = await uploadOnCloudinary(resume[0].path);
+            console.log("uploadResponse", uploadResponse);
+            if (!uploadResponse) {
+                throw new Error("Failed to upload image on cloudinary");
+            }
+            userdata.resume = {
+                url: uploadResponse.url,
+                public_id: uploadResponse.public_id
+            };
+        }
+        if (profilrImage) {
+            const uploadResponse = await uploadOnCloudinary(profilrImage[0].path);
+            console.log("uploadResponse", uploadResponse);
+            if (!uploadResponse) {
+                throw new Error("Failed to upload image on cloudinary");
+            }
+            userdata.resume = {
+                url: uploadResponse.url,
+                public_id: uploadResponse.public_id
+            };
+        }
+        if (logo) {
+            const uploadResponse = await uploadOnCloudinary(logo[0].path);
+            console.log("uploadResponse", uploadResponse);
+            if (!uploadResponse) {
+                throw new Error("Failed to upload image on cloudinary");
+            }
+            userdata.resume = {
+                url: uploadResponse.url,
+                public_id: uploadResponse.public_id
+            };
+        }
+
         await userdata.save()
         return res.status(200).send({ message: "user data is updated", data: userdata })
     } catch (error) {
@@ -66,23 +103,23 @@ exports.getUserProfile = async (req, res) => {
     }
 }
 
-exports.resetPassword = async(req, res)=>{
+exports.resetPassword = async (req, res) => {
     try {
-        const {oldPassword, newPassword} = req.body
-        if(!oldPassword || !newPassword){
-            return res.status(400).send({ error: "please fill all field" }) 
+        const { oldPassword, newPassword } = req.body
+        if (!oldPassword || !newPassword) {
+            return res.status(400).send({ error: "please fill all field" })
         }
         const userdata = user.findById(req.user._id).select("+password")
-        if(!(await comparePassword(oldPassword, userdata.password))){
-            return res.status(400).send({message: "Wrong password"})
+        if (!(await comparePassword(oldPassword, userdata.password))) {
+            return res.status(400).send({ message: "Wrong password" })
         }
         const encryptpassword = await hashPassword(newPassword)
-        if(!encryptpassword){
+        if (!encryptpassword) {
             return res.status(500).send({ error: "password not encrypted function failed" })
         }
         userdata.password = encryptpassword
         await userdata.save()
-        return res.status(200).send({message: "Password changed successfully"})
+        return res.status(200).send({ message: "Password changed successfully" })
     } catch (error) {
         console.log(error.message)
         return res.status(500).send({ error: error.message })

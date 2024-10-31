@@ -13,20 +13,26 @@ const projectSchema = new Schema({
     required: [true, 'Project description is required.'],
   },
   image: {
-    type: String,
-    required: [true, 'Project image URL is required.'],
-    validate: {
-      validator: function(v) {
-        return /^(ftp|http|https):\/\/[^ "]+$/.test(v); // Validates URL format
+    url: {
+      type: String,
+      required: [true, "Project image is required."],
+      validate: {
+        validator: function (v) {
+          return /^(ftp|http|https):\/\/[^ "]+$/.test(v); // Validates URL format
+        },
+        message: props => `${props.value} is not a valid project image link URL!`
       },
-      message: props => `${props.value} is not a valid image URL!`
+    },
+    public_id: {
+      type: String,
+      required: [true, "Project image is required."],
     }
   },
   link: {
     type: String,
     required: [true, 'Project link URL is required.'],
     validate: {
-      validator: function(v) {
+      validator: function (v) {
         return /^(ftp|http|https):\/\/[^ "]+$/.test(v); // Validates URL format
       },
       message: props => `${props.value} is not a valid project link URL!`
@@ -37,7 +43,7 @@ const projectSchema = new Schema({
     ref: 'User',
     required: [true, 'User ID is required.']
   }
-}, {timestamps: true});
+}, { timestamps: true });
 
 const Project = mongoose.model('Project', projectSchema);
 

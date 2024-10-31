@@ -7,13 +7,19 @@ const skillSchema = new mongoose.Schema({
         required: [true, "Name is required"]
     },
     icon: {
-        type: String,
-        required: [true, "Icon is required"],
-        validate: {
-            validator: function (v) {
-                return /^(ftp|http|https):\/\/[^ "]+$/.test(v); // Validates URL format
+        url: {
+            type: String,
+            required: [true, "skill icon is required."],
+            validate: {
+                validator: function (v) {
+                    return /^(ftp|http|https):\/\/[^ "]+$/.test(v); // Validates URL format
+                },
+                message: props => `${props.value} is not a valid skill icon link URL!`
             },
-            message: props => `${props.value} is not a valid project link URL!`
+        },
+        public_id: {
+            type: String,
+            required: [true, "skill icon is required."],
         }
     },
     description: {

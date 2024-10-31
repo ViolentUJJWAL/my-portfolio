@@ -56,14 +56,18 @@ const educationSchema = new mongoose.Schema({
         default: "completed"
     },
     image: {
-        type: String,
-        validate: {
-            validator: function (v) {
-                return /^(ftp|http|https):\/\/[^ "]+$/.test(v); // Validates URL format
+        url:{
+            type: String,
+            validate: {
+                validator: function (v) {
+                    return /^(ftp|http|https):\/\/[^ "]+$/.test(v); // Validates URL format
+                },
+                message: props => `${props.value} is not a valid project link URL!`
             },
-            message: props => `${props.value} is not a valid project link URL!`
         },
-        default: null
+        public_id: {
+            type: String,
+        }
     },
     description: {
         type: String,
