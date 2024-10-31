@@ -19,7 +19,7 @@ const jwtToken = async (req, res, next) => {
         message: "User not found",
       });
     }
-    if (userData.isBlocked) {
+    if (userData.isActive) {
       return res.status(403).send({
         success: false,
         message:

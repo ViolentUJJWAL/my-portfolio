@@ -38,3 +38,25 @@ $('#nav-toggle').click(function(){
 });
 
 
+
+document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.getElementsByClassName("course-card");
+  
+    const scrollAnimation = () => {
+      Array.from(cards).forEach(card => {
+        const cardPosition = card.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+  
+        if (cardPosition < screenPosition) {
+          card.classList.add("scroll-in");
+        }else{
+            card.classList.remove("scroll-in");
+        }
+      });
+    };
+  
+    window.addEventListener("scroll", scrollAnimation);
+    scrollAnimation(); // Trigger animation if already in view on load
+  });
+  
+  
