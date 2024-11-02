@@ -29,5 +29,5 @@ const checkAdmin = () => {
   }
 };
   
-  module.exports = { checkAdmin };
+  module.exports =  checkAdmin;
   

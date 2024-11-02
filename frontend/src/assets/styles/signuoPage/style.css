@@ -1,0 +1,116 @@
+.signup {
+    overflow: hidden;
+    background-color: rgb(207, 203, 203);
+    padding: 30px 30px;
+    border-radius: 10px;
+    border-color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    transform: translate(-50%, -50%);
+    transition: transform 300ms, box-shadow 300ms;
+    box-shadow: 5px 10px 10px var(--before-background);
+    --before-background: rgba(90, 141, 236, 0.61);
+}
+.signup-page .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.signup-page h1{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 1000;
+    font-stretch: wider;
+    font-size: 30px;
+}
+
+.signup::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    border-top-left-radius: 40%;
+    border-top-right-radius: 35%;
+    border-bottom-left-radius: 45%;
+    border-bottom-right-radius: 40%;
+    z-index: -1;
+}
+
+.signup::before {
+    left: -100%;
+    bottom: 10%;
+    background-color: var(--before-background);
+    animation: wawes 6s infinite linear;
+}
+
+.signup > input {
+    display: block;
+    padding: 14.5px;
+    width: 80%;
+    margin: 10px auto;
+    color: var(--color);
+    outline: none;
+    background-color: #e0dddd56;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    font-size: 15px;
+    backdrop-filter: blur(15px);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.signup > input:focus-visible{
+    border: 2px solid var(--before-background);
+    transform: scale(1.1);
+}
+
+::placeholder {
+    color: var(--color);
+    opacity: 1; /* Firefox */
+  }
+  
+  ::-ms-input-placeholder { /* Edge 12 -18 */
+    color: var(--color);
+  }
+
+.signup .btn-box{
+    display: flex;
+    justify-content: end;
+}
+
+.signup #submit-btn {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    cursor: pointer;
+    justify-self: flex-end;
+    --color: #ffffff
+    font-size: 16px;
+    text-transform: uppercase;
+    width: 80px;
+    border: 0;
+    padding: 10px 0;
+    margin-top: 10px;
+    margin-left: -5px;
+    border-radius: 5px;
+    background-color: var(--before-background);
+    transition: background-color 300ms;
+}
+
+.signup > button:hover {
+    background-color: rgba(90, 141, 236, 1);
+}
+
+@keyframes wawes {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,42 @@
+.theme-btn-container {
+    position: absolute;
+    left: 0;
+    bottom: 2rem;
+}
+
+.theme-btn {
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+    border: 1px solid black;
+}
+
+.theme-btn:hover {
+    width: 40px !important;
+}
+
+.theme-bg-btn-container {
+    position: absolute;
+    right: 0;
+    bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.bg-img {
+    height: 30px;
+    width: 30px;
+    transition: all 0.3s ease-in;
+    border: 1px solid black;
+}
+
+.bg-img:hover {
+    height: 40px;
+    width: 30px;
+}
+
+.bg-btm {
+    margin: 5px;
+    display: flex;
+    justify-items: end;
+    position: relative;
+}

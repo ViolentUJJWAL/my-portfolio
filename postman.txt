@@ -1,0 +1,219 @@
+education
+
+    1. Get All education Data 
+    (get) education/
+
+    2. add education Data
+    (post) education/
+    {
+        image : file, 
+        company,
+        designation,
+        start: {month, year},
+        end: {month, year},
+        description
+    }
+
+    3. update education Data
+    (put) education/:id
+    {
+        image : file, 
+        company,
+        designation,
+        start: {month, year},
+        end: {month, year},
+        description
+    }
+
+    4. delete education Data
+    (delete) education/:id
+
+
+
+experience
+
+    1. get all experience data
+    (get) experience/
+
+    2. add experience Data
+    (post) experience/
+    {
+        company,
+        designation,
+        start: 
+            {
+                month,
+                year
+            },
+        end [
+                {
+                    month,
+                    year
+                },
+                "Present"
+            ],
+        description  
+    }
+
+    3. update experience Data
+    (put) experience/:id
+    {
+    company,
+        designation,
+        start: 
+            {
+                month,
+                year
+            },
+        end [
+                {
+                    month,
+                    year
+                },
+                "Present"
+            ],
+        description   
+    }
+
+    4. delete experience Data
+    (delete) experience/:id
+
+
+
+skill
+
+    1. get all skill data
+    (get) skill/
+
+    2. add skill Data
+    (post) skill/
+    {
+        icon: file,
+        name,
+        description,
+    }
+
+    3. update skill Data
+    (put) skill/:id
+    {
+        icon: file,
+        name,
+        description,
+    }
+
+    4. delete skill Data
+    (delete) skill/:id
+
+
+
+project
+
+    1. get all project data
+    (get) project/
+
+    2. add project Data
+    (post) project/
+    {
+        title,
+        description,
+        link,  
+        image: file,
+    }
+
+    3. update project Data
+    (put) project/:id
+    {
+        title,
+        description,
+        link,  
+        image: file, 
+    }
+
+    4. delete project Data
+    (delete) project/:id
+
+
+
+contactUs
+
+    1. send contect u
+    (post) contactUs/
+        {
+            name,
+            email,
+            phone,
+            subject,
+            message,
+            userId
+        }
+
+    2. get all contact u
+    (get) contactUs/
+
+    3. delete contactUs
+    (delete) contactUs/:id
+
+
+
+admin
+
+    1. block user
+    (put) admin/block/:id
+
+    2. get all user
+    (get) admin/users 
+
+
+user
+
+    1. get profile
+    (get) profile/
+
+    2. update user data
+    (put) profile/
+        {
+            resume: file
+            profilrImage: file
+            logo: file
+            name,
+            phoneno,
+            about,
+            designation,
+            city,
+            state,
+            country,
+            pin
+
+        }
+    
+    3. reset password
+    (put) profile/resetPassword
+        {
+            oldPassword,
+            newPassword
+        }
+
+    4. get user profile
+    (get) profile/:username
+
+auth
+
+    1. sign up
+    (post) auth/signup
+        {
+            name,
+            username,
+            email,
+            password,
+            phoneno
+        }
+    
+    2. login
+    (post) auth/login
+        {
+            usernameOrEmail,
+            password
+        }
+
+    3. logout
+    (get) auth/logout

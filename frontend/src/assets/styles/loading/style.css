@@ -1,0 +1,55 @@
+
+.loading{
+    width: 90vw;
+    height: 90vh;
+    background-color: rgba(243, 239, 239, 0.562);
+    align-content: center;
+    position:absolute;
+    left: 5%;
+    border-radius: 50px;
+    z-index: 10;
+}
+
+.water {
+    width: 200px;
+    height: 200px;
+    margin: auto auto;
+    background-color: var(--color);
+    border-radius: 50%;
+    position: relative;
+    box-shadow: inset 0 0 30px 0 rgba(0, 0, 0, .5), 0 4px 10px 0 rgba(0, 0, 0, .5);
+    overflow: hidden;
+    --color: skyblue;
+}
+
+.water:before,
+.water:after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: -80px;
+    background-color: #fff;
+}
+
+.water:before {
+    border-radius: 45%;
+    background: rgba(255, 255, 255, .7);
+    animation: wave 5s linear infinite;
+}
+
+.water:after {
+    border-radius: 35%;
+    background: rgba(255, 255, 255, .3);
+    animation: wave 5s linear infinite;
+}
+
+@keyframes wave {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

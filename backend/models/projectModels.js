@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
 
-const projectSchema = new Schema({
+const projectSchema = new mongoose.Schema({
   title: {
     type: String,
     minlength: [2, 'Project title must be at least 2 characters long.'],

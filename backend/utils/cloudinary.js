@@ -14,7 +14,7 @@ const uploadOnCloudinary = async (localFilePath) => {
             throw new Error("File not found at the specified path");
         }
         const response = await cloudinary.uploader.upload(localFilePath, {
-            resource_type: "image"
+            resource_type: "auto"
         });
         console.log("file uploaded successfully", response.url);
         fs.unlinkSync(localFilePath);

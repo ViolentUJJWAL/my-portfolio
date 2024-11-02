@@ -40,7 +40,6 @@ const userSchema = new mongoose.Schema({
     profilrImage: {
         url: {
             type: String,
-            required: [true, "profilrImage is required."],
             validate: {
                 validator: function (v) {
                     return /^(ftp|http|https):\/\/[^ "]+$/.test(v); // Validates URL format
@@ -50,13 +49,11 @@ const userSchema = new mongoose.Schema({
         },
         public_id: {
             type: String,
-            required: [true, "profilrImage is required."],
         }
     },
     logo: {
         url: {
             type: String,
-            required: [true, "logo is required."],
             validate: {
                 validator: function (v) {
                     return /^(ftp|http|https):\/\/[^ "]+$/.test(v); // Validates URL format
@@ -66,13 +63,11 @@ const userSchema = new mongoose.Schema({
         },
         public_id: {
             type: String,
-            required: [true, "logo is required."],
         }
     },
     resume: {
         url: {
             type: String,
-            required: [true, "resume is required."],
             validate: {
                 validator: function (v) {
                     return /^(ftp|http|https):\/\/[^ "]+$/.test(v); // Validates URL format
@@ -82,29 +77,24 @@ const userSchema = new mongoose.Schema({
         },
         public_id: {
             type: String,
-            required: [true, "resume is required."],
         }
     },
     address: {
         city: {
             type: String,
             minlength: [2, 'city name must be at least 2 characters long.'],
-            required: [true, "city is required"]
         },
         state: {
             type: String,
             minlength: [2, 'state name must be at least 2 characters long.'],
-            required: [true, "state is required"]
         },
         country: {
             type: String,
             minlength: [2, 'country name must be at least 2 characters long.'],
-            required: [true, "country is required"]
         },
         pin: {
             type: String,
             minlength: [2, 'pin code must be at least 2 characters long.'],
-            required: [true, "pin is required"]
         }
     },
     link: [
@@ -126,23 +116,26 @@ const userSchema = new mongoose.Schema({
             },
             icon: {
                 type: String,
-                default: null,
+                required: [true, "icon link is required in ocon"],
                 validate: {
                     validator: function (v) {
                         return /^(ftp|http|https):\/\/[^ "]+$/.test(v); // Validates URL format
                     },
-                    message: props => `${props.value} is not a valid project link URL!`
+                    message: props => `${props.value} is not a valid icon link URL!`
                 }
             }
         }
     ],
     password: {
-        tryp: String,
+        type: String,
         minlength: [6, 'password must be at least 6 characters long.'],
         required: [true, "password is required"],
         select: false
     },
-    role: "user",
+    role: {
+        type: String,
+        default: "user",
+    },
     otp: {
         type: String,
         default: null,
@@ -158,7 +151,10 @@ const userSchema = new mongoose.Schema({
         default: null,
         select: false
     },
-    isActive: true
+    isActive: {
+        type: Boolean,
+        default: true,
+    }
 }, { timestamps: true });
 
 

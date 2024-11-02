@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css?family=Dosis:600");
+
+/*VARIABLES*/
+/*Colors*/
+
+/*-----------------------------------------------
+MOBILE
+Content of mobile menu
+-----------------------------------------------*/
+.navbar{
+    position: absolute;
+    z-index: 99;
+    top: 0px;
+    --color: black;
+    --text: white;
+    --border: black;
+}
+
+.navbar .mobile {
+    padding: 40px;
+}
+
+/*-----------------------------------------------
+LABEL
+-----------------------------------------------*/
+.navbar .mobile__label {
+    border: solid 2px;
+    display: inline-block;
+    background-color: var(--color);
+    overflow: hidden;
+    padding: 12px 9px;
+    width: 25px;
+    white-space: nowrap;
+
+    &:hover {
+        cursor: pointer;
+
+        /*ANIMAION POSITION ON HOVER*/
+        .label__line {
+            margin-left: 0px;
+        }
+
+        /*ANIMATION DELAY*/
+        :nth-child(2) {
+            .label__line {
+                transition-delay: .1s;
+            }
+        }
+
+        :nth-child(3) {
+            .label__line {
+                transition-delay: .2s;
+            }
+        }
+    }
+}
+
+/*LINES CONTENT*/
+.navbar .mobile__label__content {
+    font-size: 0;
+    line-height: 0;
+    height: 2px;
+    margin-bottom: 5px;
+
+    &:last-child {
+        margin-bottom: 0px;
+    }
+}
+
+/*WHITE LINES*/
+.navbar .label__line {
+    background-color: var(--text);
+    width: 24px;
+    height: 2px;
+    display: inline-block;
+    margin-left: -33px;
+    margin-right: 43px;
+    /*LINES ANIMATION*/
+    transition: margin-left .2s linear;
+}
+
+/*-----------------------------------------------
+INPUT
+-----------------------------------------------*/
+.navbar .mobile__input {
+    display: none;
+}
+
+/*-----------------------------------------------
+NAV
+-----------------------------------------------*/
+.navbar .mobile__nav {
+    margin-top: 10px;
+    max-height: 0;
+    width: fit-content;
+    padding: 0px 15px;
+    overflow: hidden;
+    background: rgb(158, 158, 158);
+    border-radius: 20px;
+    transition: max-height 1s linear, max-width .8s linear;
+}
+
+.navbar .nav__item {
+    white-space: nowrap;
+
+    .link {
+        text-decoration: none;
+        display: block;
+        padding: 5px 0px;
+        color: var(--color);
+        font-weight: bolder;
+
+        &:hover{
+            border-bottom: 2px solid;
+            border-color: var(--border);
+        }
+    }
+}
+
+.navbar .mobile__input:checked+.mobile__nav {
+    max-width: 150px;
+    max-height: 200px;
+}

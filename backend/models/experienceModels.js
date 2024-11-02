@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
 
-const experienceSchema = new Schema({
+const experienceSchema = new mongoose.Schema({
     company: {
         type: String,
         minlength: [2, 'Company Name must be at least 2 characters long.'],
@@ -24,7 +23,7 @@ const experienceSchema = new Schema({
             required: true,
             min: 1960,
             validate: {
-                validate: function (v) {
+                validator: function (v) {
                     return (v <= new Date().getFullYear()); // Checks if year is <= current year)
                 },
                 message: props => `${props.v} is invalid`
@@ -35,7 +34,7 @@ const experienceSchema = new Schema({
         type: mongoose.Schema.Types.Mixed,
         default: "Peresent",
         validate: {
-            validate: function (v) {
+            validator: function (v) {
                 if (v === "Present") return true;
                 if (v && typeof v === "object") {
                     const currentYear = new Date().getFullYear();
