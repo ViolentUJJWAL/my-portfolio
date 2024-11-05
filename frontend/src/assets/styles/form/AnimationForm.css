@@ -106,7 +106,7 @@
     height: fit-content;
     margin: 0px auto;
     width: 100%;
-    padding: 20px 40px;
+    padding: 0px 40px;
     color: var(--text);
     border: 1px solid hsla(0, 0%, 65%, 0.148);
     box-shadow: 0 0 36px 1px rgba(0, 0, 0, 0.2);
@@ -135,16 +135,20 @@
     grid-template-columns: 50% 50%;
     align-items: center;
 }
+.edit-data-form .field{
+    margin-bottom: 25px;
+}
 
-.edit-data-form .field input {
+.edit-data-form .field input,
+.edit-data-form input[type="file"],
+.edit-data-form textarea{
     width: 95%;
-    min-height: 44px;
     display: block;
-    margin: 15px 0px;
-    padding: 0px 15px;
+    margin: 10px 0px;
+    padding: 15px 15px;
     color: var(--color);
     outline: none;
-    background-color: hsla(0, 9%, 98%, 0.753);
+    background-color: hsla(0, 0%, 66%, 0.753);
     justify-self: center;
     border: none;
     border-radius: 5px;

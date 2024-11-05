@@ -9,24 +9,19 @@ const Skills = () => {
             <div className="formbg-outer">
                 <div className="formbg">
                     <div className="formbg-inner padding-top--24">
-                        <form id="stripe-login">
+                        <form>
                             <div className="field">
                                 <label htmlFor="email">Email</label>
-                                <input type="email" name="email" placeholder='Email' />
+                                <input type="email" name="email" placeholder='Enate Email' />
                             </div>
                             <div className="field">
-                                <label htmlFor="password">Password</label>
-                                <input type="password" name="password" />
+                                <label htmlFor="description">Description</label>
+                                <textarea rows={3} type="text" name="description"></textarea>
                             </div>
                             <div className="field">
-                                <label htmlFor="password">Password</label>
-                                <input type="password" name="password" />
+                                <label htmlFor="icon">Skill Image Icon</label>
+                                <input type='file' name="icon" />
                             </div>
-                            <div className="field">
-                                <label htmlFor="password">Password</label>
-                                <input type="password" name="password" />
-                            </div>
-
                             <div className="field padding-bottom--24">
                                 <input type="submit" name="submit" value="Continue" />
                             </div>

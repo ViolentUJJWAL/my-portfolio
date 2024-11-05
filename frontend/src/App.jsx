@@ -1,5 +1,5 @@
 // src/App.jsx
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './components/AuthContext';
 import Navbar from './components/Navbar';
@@ -41,12 +41,12 @@ function App() {
               <UnLoginUserRoute>
                 <LoginPage />
               </UnLoginUserRoute>
-              } />
+            } />
             <Route path="/signup" element={
               <UnLoginUserRoute>
                 <SignupPage />
               </UnLoginUserRoute>
-              } />
+            } />
             <Route path="/contactus" element={<ConactUsPage />} />
             <Route
               path="/dashboard"

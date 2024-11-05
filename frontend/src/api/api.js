@@ -17,6 +17,8 @@ export const getApi = async (endpoint) => {
   } catch (error) {
     if(error.status === 500){
       toast.error("Internal server error, try again")
+    }else if(error.code){
+      toast.error(error.message)
     }else{
       toast.error(error.response.data.error)
     }
@@ -29,13 +31,16 @@ export const postApi = async (endpoint, data) => {
   try {
     console.log(data)
     const response = await axios.post(`${API_BASE_URL}${endpoint}`, data, {
-        withCredentials: true, // Ensures cookies are included in requests
-      });
+      withCredentials: true, // Ensures cookies are included in requests
+    });
     toast.success(response.data.message);
     return response.data;
   } catch (error) {
+    console.log(error)
     if(error.status === 500){
       toast.error("Internal server error, try again")
+    }else if(error.code){
+      toast.error(error.message)
     }else{
       toast.error(error.response.data.error)
     }
@@ -47,13 +52,16 @@ export const putApi = async (endpoint, data) => {
   try {
     console.log(data)
     const response = await axios.put(`${API_BASE_URL}${endpoint}`, data, {
-        withCredentials: true, // Ensures cookies are included in requests
-      });
+      withCredentials: true, // Ensures cookies are included in requests
+    });
     toast.success(response.data.message);
     return response.data;
   } catch (error) {
+    console.log(error)
     if(error.status === 500){
       toast.error("Internal server error, try again")
+    }else if(error.code){
+      toast.error(error.message)
     }else{
       toast.error(error.response.data.error)
     }
@@ -64,13 +72,16 @@ export const putApi = async (endpoint, data) => {
 export const deleteApi = async (endpoint) => {
   try {
     const response = await axios.delete(`${API_BASE_URL}${endpoint}`, {
-        withCredentials: true, // Ensures cookies are included in requests
-      });
+      withCredentials: true, // Ensures cookies are included in requests
+    });
     toast.success(response.data.message);
     return response.data;
   } catch (error) {
+    console.log(error)
     if(error.status === 500){
       toast.error("Internal server error, try again")
+    }else if(error.code){
+      toast.error(error.message)
     }else{
       toast.error(error.response.data.error)
     }
