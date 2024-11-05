@@ -1,5 +1,5 @@
 // src/components/AuthContext.jsx
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const ThemeContext = createContext();
 
@@ -71,7 +71,14 @@ export const ThemeProvider = ({ children }) => {
     ]
     
   const [activeTheme, setActiveTheme] = useState(themes[0]);
-  const [activeBg, setActiveBg] = useState(bgTheme[0]);
+  const [activeBg, setActiveBg] = useState(bgTheme[2]);
+
+  useEffect(()=>{
+    document.body.style.backgroundImage = `url(${activeBg.url})`
+    document.body.style.backgroundSize = `cover`
+    document.body.style.backgroundPosition = `center`
+    document.body.style.backgroundRepeat = "no-repeat"
+  })
 
   const changeTheme = (theme) => {
     setActiveTheme(theme);

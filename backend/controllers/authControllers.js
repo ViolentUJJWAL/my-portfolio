@@ -8,8 +8,8 @@ const generateToken = (id, res) => {
     const expirationTime = 24 * 60 * 60 * 1000;
     res.cookie("token", token, {
         maxAge: expirationTime,
-        httpOnly: true,
-        secure: true,
+        httpOnly: false,
+        secure: false,
         sameSite: "strict"
     })
     console.log("token " + token)
@@ -19,6 +19,7 @@ const generateToken = (id, res) => {
 exports.signup = async (req, res) => {
     try {
         const { name, username, email, password, phoneno } = req.body
+        console.log(req.body)
         if(!name || !username || !email || !password || !phoneno){
             return res.status(400).json({error: "Please fill all field"})
         }
@@ -61,8 +62,8 @@ exports.login = async (req, res) => {
         if(!chackPassword){
             return res.status(400).json({error: "invalid credentials"})
         }
-        await generateToken(userdata._id, res)
-        return res.status(200).json({message: "Loged in successfully", data: userdata})
+        const token = await generateToken(userdata._id, res)
+        return res.status(200).json({message: "Loged in successfully", data: userdata, token})
     } catch (error) {
         console.log(error.message)
         return res.status(500).json({ error: error.message })

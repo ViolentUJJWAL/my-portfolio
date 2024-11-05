@@ -1,7 +1,8 @@
 .theme-btn-container {
-    position: absolute;
+    position:fixed;
     left: 0;
     bottom: 2rem;
+    z-index: 100;
 }
 
 .theme-btn {
@@ -15,10 +16,11 @@
 }
 
 .theme-bg-btn-container {
-    position: absolute;
+    position:fixed;
     right: 0;
     bottom: 2rem;
     display: flex;
+    z-index: 100;
     flex-direction: column;
 }
 

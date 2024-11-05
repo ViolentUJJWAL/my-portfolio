@@ -14,10 +14,10 @@ const ThemeBgBtn = () => {
 
     const changeBgHandler = (bg)=>{
         changeBg(bg)
-        console.log(bg)
         document.body.style.backgroundImage = `url(${bg.url})` 
         document.body.style.backgroundSize = `cover`
-        document.body.style.backgroundPosition = `center top`
+        document.body.style.backgroundPosition = `center`
+        document.body.style.backgroundRepeat = "no-repeat"
     }
 
     return ( 

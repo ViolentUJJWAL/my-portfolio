@@ -81,9 +81,10 @@ exports.uploadfile = async (req, res) => {
 exports.getUser = async (req, res) => {
     try {
         const userdata = await user.findById(req.user._id)
+        if(!userdata) return res.status(404).json({error: "User data not found"})
         return res.status(200).json({ message: "get user data", data: userdata })
     } catch (error) {
-        console.log(error.message)
+        console.log(error)
         return res.status(500).json({ error: error.message })
     }
 }

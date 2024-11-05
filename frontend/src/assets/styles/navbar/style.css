@@ -8,8 +8,8 @@ MOBILE
 Content of mobile menu
 -----------------------------------------------*/
 .navbar{
-    position: absolute;
-    z-index: 99;
+    position:fixed;
+    z-index: 100;
     top: 0px;
     --color: black;
     --text: white;
@@ -93,26 +93,28 @@ NAV
     margin-top: 10px;
     max-height: 0;
     width: fit-content;
-    padding: 0px 15px;
+    padding: 0px 20px;
     overflow: hidden;
-    background: rgb(158, 158, 158);
+    background: var(--color);
     border-radius: 20px;
     transition: max-height 1s linear, max-width .8s linear;
+    transition: 1s;
 }
 
 .navbar .nav__item {
     white-space: nowrap;
-
+    margin-left: -30px;
     .link {
         text-decoration: none;
         display: block;
         padding: 5px 0px;
-        color: var(--color);
+        color: var(--text);
         font-weight: bolder;
 
         &:hover{
             border-bottom: 2px solid;
-            border-color: var(--border);
+            border-color: var(--text);
+            transform: scale(1.1);
         }
     }
 }

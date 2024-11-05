@@ -1,10 +1,12 @@
 // src/components/LoginPage.jsx
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import "../assets/styles/loginPage/styles.css";
 import { Link } from 'react-router-dom';
 import { useTheme } from '../components/ThemeContext';
 import Loading from './Loading';
+import { postApi } from '../api/api';
 
 
 const LoginPage = () => {
@@ -14,22 +16,31 @@ const LoginPage = () => {
   const { login } = useAuth();
   const { activeTheme, activeBg } = useTheme()// Default theme
 
+  const navigate = useNavigate()
+
   useEffect(() => {
     // Apply active theme to the root element
     const root = document.getElementById("lodin-page");
     root.style.setProperty("--background", activeTheme.background);
     root.style.setProperty("--text", activeBg.color);
-    if(!loading){
-      document.getElementById("submit-btn").style.setProperty("--color", activeTheme.color);
-    }
+    document.getElementById("submit-btn").style.setProperty("--color", activeTheme.color);
     root.style.setProperty("--primary-color", activeTheme.background);
-  }, [activeTheme, activeBg]); // Re-run effect whenever activeTheme changes
+  }, [activeTheme, activeBg, loading]); // Re-run effect whenever activeTheme changes
 
-  const handleLogin = () => {
-    if (username && password) {
-      login('mockToken'); // Replace with actual API call for login
-    } else {
-      alert('Please enter both username and password.');
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const formData = { usernameOrEmail : username, password };
+      console.log(formData)
+      const resdata = await postApi("/auth/login", formData)
+      login(resdata)
+      setLoading(false)
+      navigate('/');
+    } catch (error) {
+      console.log(error)
+    } finally{
+      setLoading(false)
     }
   };
 
@@ -48,7 +59,7 @@ const LoginPage = () => {
                   className="illustration"
                 />
                 <h1 className="opacity">LOGIN</h1>
-                <form onSubmit={(e) => e.preventDefault()}>
+                <form onSubmit={handleLogin}>
                   <input
                     type="text"
                     placeholder="USERNAME OR EMAIL"
@@ -61,11 +72,11 @@ const LoginPage = () => {
                     type="password"
                     placeholder="PASSWORD"
                     value={password}
-                    minLength={6}
+                    // minLength={6}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
-                  <button type="submit" id='submit-btn' className="opacity" onClick={handleLogin}>
+                  <button type="submit" id='submit-btn' className="opacity">
                     SUBMIT
                   </button>
                 </form>
