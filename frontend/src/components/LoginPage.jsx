@@ -5,8 +5,7 @@ import { useAuth } from './AuthContext';
 import "../assets/styles/loginPage/styles.css";
 import { Link } from 'react-router-dom';
 import { useTheme } from '../components/ThemeContext';
-import Loading from './Loading';
-import { postApi } from '../api/api';
+import authService from '../api/authServices';
 
 
 const LoginPage = () => {
@@ -33,7 +32,8 @@ const LoginPage = () => {
     try {
       const formData = { usernameOrEmail : username, password };
       console.log(formData)
-      const resdata = await postApi("/auth/login", formData)
+      const resdata = await authService.login(formData)
+      console.log(resdata)
       login(resdata)
       setLoading(false)
       navigate('/');
@@ -46,9 +46,6 @@ const LoginPage = () => {
 
   return (
     <div className="login-page" id="lodin-page">
-      {
-        (loading) ? <Loading /> : ""
-      }
           <section className="container">
             <div className="login-container">
               <div className="circle circle-one"></div>

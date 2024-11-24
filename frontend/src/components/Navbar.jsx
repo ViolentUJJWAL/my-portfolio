@@ -36,7 +36,7 @@ const Navbar = () => {
 				</label>
 				<input className="mobile__input" type="checkbox" id="checkbox" />
 				<nav className="mobile__nav">
-					<ul style={{"list-style-type": "none"}}>
+					<ul style={{"listStyleType": "none"}}>
 						{
 							(isAuthenticated)?
 						<>

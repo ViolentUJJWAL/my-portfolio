@@ -1,90 +1,20 @@
-// src/api/api.js
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import axios from "axios";
 
+// Create an Axios instance with base URL
+const api = axios.create({
+  baseURL: "http://localhost:3000/api",
+  withCredentials: true,
+});
 
-const API_BASE_URL = "http://localhost:3000/api";
-
-
-// Example function for GET request
-export const getApi = async (endpoint) => {
-  try {
-    const response = await axios.get(`${API_BASE_URL}${endpoint}`, {
-        withCredentials: true, // Ensures cookies are included in requests
-      });
-    toast.success(response.data.message);
-    return response.data;
-  } catch (error) {
-    if(error.status === 500){
-      toast.error("Internal server error, try again")
-    }else if(error.code){
-      toast.error(error.message)
-    }else{
-      toast.error(error.response.data.error)
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      if (window.location.pathname !== "/login" && window.location.pathname !== "/") {
+        window.location.href = "/login";
+      }
     }
-    throw error;
+    return Promise.reject(error);
   }
-};
-
-// Example function for POST request
-export const postApi = async (endpoint, data) => {
-  try {
-    console.log(data)
-    const response = await axios.post(`${API_BASE_URL}${endpoint}`, data, {
-      withCredentials: true, // Ensures cookies are included in requests
-    });
-    toast.success(response.data.message);
-    return response.data;
-  } catch (error) {
-    console.log(error)
-    if(error.status === 500){
-      toast.error("Internal server error, try again")
-    }else if(error.code){
-      toast.error(error.message)
-    }else{
-      toast.error(error.response.data.error)
-    }
-    throw error;
-  }
-};
-
-export const putApi = async (endpoint, data) => {
-  try {
-    console.log(data)
-    const response = await axios.put(`${API_BASE_URL}${endpoint}`, data, {
-      withCredentials: true, // Ensures cookies are included in requests
-    });
-    toast.success(response.data.message);
-    return response.data;
-  } catch (error) {
-    console.log(error)
-    if(error.status === 500){
-      toast.error("Internal server error, try again")
-    }else if(error.code){
-      toast.error(error.message)
-    }else{
-      toast.error(error.response.data.error)
-    }
-    throw error;
-  }
-};
-
-export const deleteApi = async (endpoint) => {
-  try {
-    const response = await axios.delete(`${API_BASE_URL}${endpoint}`, {
-      withCredentials: true, // Ensures cookies are included in requests
-    });
-    toast.success(response.data.message);
-    return response.data;
-  } catch (error) {
-    console.log(error)
-    if(error.status === 500){
-      toast.error("Internal server error, try again")
-    }else if(error.code){
-      toast.error(error.message)
-    }else{
-      toast.error(error.response.data.error)
-    }
-    throw error;
-  }
-};
+);
+export default api;

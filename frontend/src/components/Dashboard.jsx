@@ -1,10 +1,10 @@
 // src/components/Dashboard.jsx
 import React, { useEffect, useRef, useState } from 'react';
 import { useAuth } from './AuthContext';
-import { getApi, postApi } from '../api/api';  // Assume postApi is used for updates
 import Loading from './Loading';
 import { FaDownload, FaEdit } from 'react-icons/fa';
 import "../assets/styles/dashboard/style.css"
+import authService from '../api/authServices';
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(false);
@@ -55,7 +55,7 @@ const Dashboard = () => {
   const handleTextUpdate = async () => {
     try {
       setLoading(true);
-      await postApi('/update-profile', editData);
+      // await authService.;
       setUser(editData);
       alert('Profile updated successfully');
     } catch (error) {

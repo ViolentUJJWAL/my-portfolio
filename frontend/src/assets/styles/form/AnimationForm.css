@@ -118,9 +118,13 @@
     -o-border-radius: 10px;
 }
 
-.edit-data-form h1{
+.edit-data-form h1 {
     color: var(--text);
     text-align: center;
+    font-size: xx-large;
+    font-weight: bolder;
+    margin-top: 25px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .edit-data-form label {
@@ -135,13 +139,16 @@
     grid-template-columns: 50% 50%;
     align-items: center;
 }
-.edit-data-form .field{
+
+.edit-data-form .field {
     margin-bottom: 25px;
 }
 
-.edit-data-form .field input,
+.edit-data-form .field input[type="text"],
+.edit-data-form .field input[type="number"],
+.edit-data-form input[type="submit"],
 .edit-data-form input[type="file"],
-.edit-data-form textarea{
+.edit-data-form textarea {
     width: 95%;
     display: block;
     margin: 10px 0px;
@@ -163,13 +170,19 @@
 }
 
 .edit-data-form input[type="submit"] {
-    width: 95%;
-    justify-self: center;
     background-color: var(--bgColor);
     color: var(--color);
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
 }
+
+.edit-data-form input[type="checkbox"] {
+    width: 28px;
+    height: 18px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
 
 .edit-data-form .animationRightLeft {
     animation: animationRightLeft 2s ease-in-out infinite;

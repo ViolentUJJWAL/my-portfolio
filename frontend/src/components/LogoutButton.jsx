@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useAuth } from './AuthContext';
 import { useTheme } from './ThemeContext';
 import "../assets/styles/logoutBtn/style.css"
-import { getApi } from '../api/api';
+import authService from '../api/authServices';
 
 
 const LogoutButton = () => {
@@ -29,7 +29,7 @@ const LogoutButton = () => {
 
   const onLogoutHandle = async () => {
     try {
-      await getApi("/auth/logout")
+      await authService.logout()
       logout()
     } catch (error) {
       console.log(error)

@@ -3,6 +3,9 @@ import React, { useEffect } from 'react';
 import "../../assets/styles/form/AnimationForm.css"
 import Skills from './Skill';
 import { useTheme } from '../ThemeContext';
+import Experience from './Experience';
+import Education from './Education';
+import Project from './Project';
 
 const FormLayout = () => {
 
@@ -51,10 +54,9 @@ const FormLayout = () => {
           </div>
         </div>
         <Skills />
-        <Skills />
-        <Skills />
-        <Skills />
-        <Skills />
+        <Experience/>
+        <Education/>
+        <Project/>
       </div>
     </div>
   );

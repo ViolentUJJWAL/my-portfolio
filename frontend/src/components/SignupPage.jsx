@@ -3,9 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../assets/styles/signuoPage/style.css";
 import { useTheme } from '../components/ThemeContext';
-import Loading from './Loading';
 import { toast } from 'react-toastify';
-import { postApi } from '../api/api';
+import authService from '../api/authServices';
 
 
 
@@ -31,7 +30,7 @@ const SignupPage = () => {
         throw new Error("Password and Confirm password not match")
       }
       const formData = { name, username, email, phoneno, password };
-      const resdata = await postApi("/auth/signup", formData)
+      const resdata = await authService.signup(formData)
       console.log(resdata)
       setLoading(false)
       navigate('/login');
@@ -53,7 +52,6 @@ const SignupPage = () => {
 
   return (
     <div className="signup-page" id='signup-page'>
-      {loading && <Loading />}
       <section className="container">
         <form className="signup" id='signup' onSubmit={handleSignup}>
           <h1 style={{"textAlign": "center"}}>Create A New Account</h1>

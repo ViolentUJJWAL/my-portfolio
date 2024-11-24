@@ -217,3 +217,13 @@ auth
 
     3. logout
     (get) auth/logout
+
+
+
+template
+https://freefrontend.com/bootstrap-profiles/
+
+
+
+No data laptop
+    https://img.freepik.com/free-vector/hand-drawn-no-data-illustration_23-2150570252.jpg
